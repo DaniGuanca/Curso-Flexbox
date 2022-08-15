@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexbox Con Bootstrap</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+
+  <style>
+    .hero-image {
+      background-repeat: no-repeat;
+
+      /*Una url que nos da imagenes dummies con la resolucion que le mandemos y la tematica. Ideal para cuando estoy maquetando*/
+      background-image: url("https://placeimg.com/1366/768/animals");
+    }
+
+    .hero-image div {
+      background-color: rgba(0, 0, 0, 0.75);
+    }
+  </style>
+
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+  <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Disabled</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <main class="flex-grow-1">
+    <section class="bg-info text-white d-flex flex-column align-items-center flex-lg-row justify-content-lg-evenly">
+      <article>Flex Item 1</article>
+      <article>Flex Item 2</article>
+      <article>Flex Item 3</article>
+      <article>Flex Item 4</article>
+      <article>Flex Item 5</article>
+    </section>
+
+
+    <section class="hero-image min-vh-100 text-white">
+      <div class="min-vh-100 d-flex justify-content-center align-items-center text-center">
+        <h1>Flexbox con Bootsrap</h1>
+      </div>
+    </section>
+
+
+    <div class="container">
+      <section class="row align-items-lg-center">
+        <article class="col-12 col-lg-6 order-lg-1">
+          <h2>Titulo</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, suscipit quidem laboriosam laudantium
+            nulla ipsum facere. Veritatis voluptatem fugiat qui, eveniet, dolores rerum deserunt facilis voluptate
+            possimus molestias, esse est?</p>
+        </article>
+        <article class="col-12 col-lg-6">
+          <img src="https://placeimg.com/400/400/arch" class="img-fluid">
+        </article>
+      </section>
+
+      <section class="row align-items-lg-center">
+        <article class="col-12 col-lg-6">
+          <h2>Titulo</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, suscipit quidem laboriosam laudantium
+            nulla ipsum facere. Veritatis voluptatem fugiat qui, eveniet, dolores rerum deserunt facilis voluptate
+            possimus molestias, esse est?</p>
+        </article>
+        <article class="col-12 col-lg-6">
+          <img src="https://placeimg.com/400/400/people" class="img-fluid">
+        </article>
+      </section>
+    </div>
+  </main>
+
+
+  <footer class="bg-dark text-white">
+    <h4>FOOTER BOOTSTRAP</h4>
+  </footer>
+
+
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

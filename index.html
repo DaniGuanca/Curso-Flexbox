@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendiendo Flexbox</title>
+
+  <style>
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::after,
+    *::before {
+      box-sizing: inherit;
+    }
+
+
+    /*
+      Para activarlo en el contenedor se le pone display:flex.
+        Tenemos display: flex y display: inline-flex.
+
+          display: flex 
+            La orientacion por defecto es en linea osea horizontal. EL COMPORTAMIENTO ES EN BLOQUE OCUPA TODO EL ANCHO.
+
+          display: inline-flex 
+            EL COMPORTAMIENTO ES EN LINEA SOLO OCUPA EL ESPACIO NECESARIO.
+    */
+
+    .container {
+      background-color: #333;
+      height: 30vh;
+      /*le pongo altura para ver mejor algunos efectos del flex*/
+      width: 100%;
+
+      display: flex;
+
+      /*FLEX DIRECTION
+        Tiene valores row (defecto) row-reverse (horizontal para la izquierda), column (vertical) y column-reverse(abajo hacia arriba)
+        Si usamos column el eje principal pasa a ser el y*/
+      flex-direction: row;
+      flex-direction: row-reverse;
+      flex-direction: column;
+      flex-direction: column-reverse;
+      flex-direction: row;
+
+      /*FLEX WRAP
+        Cuando tengo muchos elementos y no entran puedo hacer que pasen abajo como otra fila usando flex-wrap: wrap. Por defecto esta en no-wrap, wrap-reverse lo hace al reves de abajo hacia arriba
+        Cuando esta en nowrap ignora el ancho del item e intenta meter todo en una linea.
+        Cuando esta en wrap si respeta el ancho del item.
+        */
+      flex-wrap: nowrap;
+      flex-wrap: wrap;
+      flex-wrap: wrap-reverse;
+      flex-wrap: nowrap;
+
+      /*
+      FLEX FLOW
+        Shorthand de flex-direction || flex-wrap
+      */
+      flex-flow: row nowrap;
+
+      /*
+      JUSTIFY CONTENT
+        Como se van a alinear el contenido osea el conjunto de los elementos respecto al eje principal(depende del flex-direction) tenemos
+          flex-start: los acomoda todos a la izquierda.
+
+          center: los agrupa en el centro.
+          
+          flex-end: los tira a la derecha.
+          
+          space-between: distribuye el espacio sobrante del container entre los elementos para   que todos tengan el mismo espacio.
+          
+          space-around: es igual al space between pero en vez de que empiece al tope de la izquierda y tope de la derecha se pone la mitad del espacio a la izquierda y derecha.
+          
+          space-evenly: distribuye todo el espacio sobrante entre los items incluyendo a la izquierda inicio y derecha final. Todos los espacios iguales
+      */
+      justify-content: flex-start;
+      justify-content: center;
+      justify-content: flex-end;
+      justify-content: space-between;
+      justify-content: space-around;
+      justify-content: space-evenly;
+      justify-content: flex-start;
+
+
+
+      /*
+      ALIGN ITEMS
+      ALIGN ITEMS FUNCIONA POR CADA LINEA
+      Alinea los items en el eje transversal tenemos los valores
+        stretch: es el por defecto estira los elementos si no tienen heigth para que se estiren y ocupen todo el contenedor en el eje transversal.
+
+        flex-start: los pone arriba al tope.
+
+        center: los pone al medio.
+
+        flex-end: los pone abajo.
+
+        baseline: pone una linea base sobre la que se alinean los textos de los items.
+      */
+      align-items: stretch;
+      align-items: flex-start;
+      align-items: center;
+      align-items: flex-end;
+      align-items: baseline;
+      align-items: stretch;
+
+
+      /*
+      ALIGN CONTENT
+      ALIGN CONTENT ALINEA LOS HIJOS PERO COMO UN TODO, ALIGN ITEMS LO HACE PARA CADA LINEA Y ALIGN CONTENT CONSIDERA TODO EL CONTENIDO COMO UNA SOLA LINEA Y ESA LA ALINEA. 
+      ESTA PROPIEDAD NO FUNCIONA CUANDO EL WRAP ESTA EN NO-WRAP!!!!!
+      Puede tener valores
+        stretch: estira todo el contenido para que ocupe todo el alto del eje.
+        
+        flex-start: arriba al tope.
+
+        center: al medio.
+
+        flex-end: abajo al tope.
+
+        space-between: arriba al tope abajo al tope y espacios entre el medio.
+
+        space-around: medio espacio arriba medio espacio abajo y espacios entre los items.
+
+        space-evenly: distribuye todo el espacio entre los items incluyendo arriba inicio y abajo final. Todos los espacios iguales
+      */
+
+      align-content: flex-start;
+      align-content: stretch;
+      align-content: flex-end;
+      align-content: center;
+      align-content: space-between;
+      align-content: space-around;
+      align-content: space-evenly;
+      align-content: flex-start;
+      /*
+      **** STRETCH ESTIRA LOS ITEMS CUANDO NO TENGAN UNA HEIGHT DEFINIDA (flex direction row) O WIDTH (flex direction column) DEPENDIENDO DEL EJE QUE UTILICE ****
+      */
+
+
+
+
+      /*
+        GAP
+          Gap es nueva por eso no estaba en el curso ni en la cheatshet del vs code pero esta en la pagina de CssTricks.
+          Lo que hace gap es asignarle un valor que le demos al gap o espacio entre los items. Los valores lo metemos en pixeles y tenemos row-gap para el espacio entre filas y column-gap para el espacio entre columnas. ESPACIO ENTRE ITEMS NO EJES. Tenemos tambien el atajo gap con un solo valor para poner el mismo valor a fila y columna o sino podemos darle dos valores gap: x y (el primero para fila y el segundo para columna).
+          
+            .container {
+              display: flex;
+              ...
+              gap: 10px;
+              gap: 10px 20px; 
+              row-gap: 10px;
+              column-gap: 20px;
+            }
+      */
+      /* row-gap: 20px;
+      column-gap: 20px;
+      gap: 40px;
+      gap: 20px 60px; */
+    }
+
+    .item {
+      background-color: #666;
+      border: medium solid #999;
+      /* width: 20%; */
+      /* height: 20%; */
+      /* width: 100px; */
+
+      /* PROPIEDADES PARA LOS HIJOS*/
+
+      /*
+      FLEX GROW
+        Por defecto es 0, este hace que el item se agrande si hay lugar vacio para que lo ocupe mas grande el numero lo aprovecha mas que otoros items con numeros menores. NO ACEPTA VALORES NEGATIVOS.
+      */
+      flex-grow: 0;
+      flex-grow: 1;
+      flex-grow: 0;
+
+
+      /*
+      FLEX SHRINK
+        Por defecto es 1, este hace que se achique cuando la caja ya no tenga espacio. NO ACEPTA VALORES NEGATIVOS.
+      */
+      flex-shrink: 1;
+      flex-shrink: 0;
+      flex-shrink: 1;
+
+
+      /*
+      FLEX BASIS
+        Por defecto auto (lo que tenga de contenido). Por defecto auto. Es el tamaño del elemento hijo dentro de la linea de la caja flexbox. Si la caja tiene direccion fila, flex-basis representa el width. Si la caja flexbox tiene direccion columna, flex-basis representa el height.
+        Flex basis tiene mas especificidad que width o height.
+      */
+      flex-basis: auto;
+      flex-basis: 100px;
+      flex-basis: auto;
+
+
+      /*
+      SHORTHAND PARA FLEX GROW FLEX SHRINK Y FLEX BASIS
+        flex: flex-grow | flex-srhink | flex basis
+      */
+      flex: 0 1 auto;
+
+
+
+      /*
+      FLEX ORDER
+        Representa el orden del elemento hijo en la caja flex box, acepta valores negativos o positivos, mientras menor sea el valor va mas antes que los otros. El valor por defecto es 0.
+      */
+      order: 0;
+
+
+
+      /*
+      ALIGN SELF
+      Es como align items pero para un solo elemento. Va a alinear un unico elemento en el eje transversal.
+        stretch: estira todo el contenido para que ocupe todo el alto del eje.
+        
+        flex-start: arriba al tope.
+
+        center: al medio.
+
+        flex-end: abajo al tope.
+
+        baseline: pone una linea base sobre la que se alinean los textos de los items.
+      */
+      align-self: stretch;
+    }
+
+    /* .item:nth-child(2) {
+      flex-grow: 0;
+      flex-shrink: 2;
+    }
+
+    .item:nth-child(3) {
+      flex-grow: 0;
+    } */
+
+
+    .item:nth-child(4) {
+      order: 3;
+      align-self: flex-start;
+      align-self: flex-end;
+      align-self: center;
+      align-self: baseline;
+      align-self: stretch;
+    }
+
+    .item:nth-child(5) {
+      order: 2;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="container">
+    <article class="item">Flex Item 1</article>
+    <article class="item">Flex Item 2</article>
+    <article class="item">Flex Item 3</article>
+    <article class="item">Flex Item 4</article>
+    <article class="item">Flex Item 5</article>
+  </section>
+
+  <br>
+  <br>
+
+  <section class="container">
+    <article class="item">Flex Item 1</article>
+    <article class="item">Flex Item 2</article>
+    <article class="item">Flex Item 3</article>
+  </section>
+
+  <br><br>
+
+  <section class="container">
+    <article class="item">Flex item 1</article>
+    <article class="item">Flex item 2</article>
+    <article class="item">Flex item 3</article>
+    <article class="item">Flex item 4</article>
+    <article class="item">Flex item 5</article>
+    <article class="item">Flex item 6</article>
+    <article class="item">Flex item 7</article>
+    <article class="item">Flex item 8</article>
+    <article class="item">Flex item 9</article>
+    <article class="item">Flex item 10</article>
+    <article class="item">Flex item 11</article>
+    <article class="item">Flex item 12</article>
+    <article class="item">Flex item 13</article>
+    <article class="item">Flex item 14</article>
+    <article class="item">Flex item 15</article>
+    <article class="item">Flex item 16</article>
+    <article class="item">Flex item 17</article>
+    <article class="item">Flex item 18</article>
+    <article class="item">Flex item 19</article>
+  </section>
+
+</body>
+
+</html>
